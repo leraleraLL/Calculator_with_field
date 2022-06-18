@@ -1,0 +1,17 @@
+<div class="content">
+    <div class="input_and_output">
+        <div class="input">
+            <p>Input:</p>
+            <div class="text_and_btn">
+                <textarea class="text_input" placeholder="input data command" readonly [(ngModel)]="valueInput"
+                ></textarea>
+                <input class="clear_btn" type="button" value="Clear" (click)="Clear()">
+            </div>
+        </div>
+        <div class="output">
+            <p>Output:</p>
+            <textarea class="text_output" placeholder="output data command" readonly [(ngModel)]="valueOutput"></textarea>
+        </div>
+    </div>
+</div>
+
