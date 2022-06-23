@@ -53,9 +53,9 @@ export class DataService {
           if (this.checkNameVariable(arrValues, nameIdentific) ){
             if (valueIdentific) {
               this.fnDict[nameIdentific] = valueIdentific
-              } else {
-              this.fnDict[nameIdentific] = 'nan'
-              }
+            } else {
+            this.fnDict[nameIdentific] = 'nan'
+            }
           }
           break;
 
@@ -66,22 +66,30 @@ export class DataService {
           } else {
             mess = this.checkFuncFn(this.fnDict[nameIdentific])
           } 
-          
+
           this.OutputDisplay(mess)
           break;
 
         case 'printvars':
           if (Object.keys(this.vrbDict).length !== 0) { // если словарь не пуст
             Object.keys(this.vrbDict).sort().forEach(key => {
-              this.OutputDisplay(key + ':' + this.vrbDict[key]) ;
+              let value = this.vrbDict[key]
+              if (!isNaN(value)) { 
+                value = parseFloat(this.vrbDict[key]).toFixed(2)
+              }
+              this.OutputDisplay(key + ':' + value) ;
             });
           }
           break;
 
-        case 'printfn':
+        case 'printfns':
           if (Object.keys(this.fnDict).length !== 0) { // если словарь не пуст
             Object.keys(this.fnDict).sort().forEach(key => {
-              this.OutputDisplay(key + ' : ' + this.checkFuncFn(key)) ;
+              let value = this.checkFuncFn(key)
+              if (!isNaN(value)) { 
+                value = parseFloat(value).toFixed(2)
+              }
+              this.OutputDisplay(key + ' : ' + value) ;
             });
           }
           break;
@@ -149,39 +157,31 @@ export class DataService {
             if (isNaN(res1)){ // если не число
               return 'nan'
             } else {
-              return parseFloat(res1).toFixed(2)
+              return res1
             }
           case '-':
             let res2: any = this.checkFuncFn(firstVal) - this.checkFuncFn(secondVal);
             if (isNaN(res2)){ // если не число
               return 'nan'
             } else {
-              return parseFloat(res2).toFixed(2)
+              return res2
             }
           case '*':
             let res3: any = this.checkFuncFn(firstVal) * this.checkFuncFn(secondVal);
             if (isNaN(res3)){ // если не число
               return 'nan'
             } else {
-              return parseFloat(res3).toFixed(2)
+              return res3
             }
           case '/':
             let res4: any = this.checkFuncFn(firstVal) / this.checkFuncFn(secondVal);
             if (isNaN(res4)){ // если не число
               return 'nan'
             } else {
-              return parseFloat(res4).toFixed(2)
+              return res4
             }
         }
       }
     }
 
 }
-
-
-
-
-  
-
-
-
